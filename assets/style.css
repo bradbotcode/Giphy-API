@@ -1,0 +1,45 @@
+body {
+  background-color: rgb(34, 33, 33);
+}
+
+@font-face {
+  font-family: HackRegularImport;
+  src: url(font/HackRegular.ttf);
+}
+p {
+  color: white;
+}
+
+.hack {
+  font-family: HackRegularImport;
+  font-size: 30px;
+}
+
+.hackBtn {
+  font-family: HackRegularImport;
+  font-size: 20px;
+  margin-top: 10px;
+}
+.gifBtn {
+  margin: 10px;
+}
+
+.card {
+  margin-top: 50px;
+  border-color: rgb(34, 33, 33);
+  height: 300px;
+}
+
+.gifHolder {
+  margin: auto;
+}
+
+.card-body {
+  padding: 0px;
+}
+
+.colW {
+  background-color: rgb(34, 33, 33);
+  border-color: rgb(34, 33, 33);
+  padding: 0px;
+}
