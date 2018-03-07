@@ -27,7 +27,10 @@ p {
 .card {
   margin-top: 50px;
   border-color: rgb(34, 33, 33);
-  height: 300px;
+}
+
+.card-body {
+  height: 180px;
 }
 
 .gifHolder {
