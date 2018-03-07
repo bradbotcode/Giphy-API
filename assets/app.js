@@ -1,11 +1,40 @@
 var buttons = ["coffee", "baby sinclair", "yoda", "bitcoin", "rubiks cube"];
 
-//function displayGifs() {
-// var gif = $(this).attr("data-name");
-//}
+function displayGifs() {
+  var topic = $(this).attr("data-name");
+  var queryURL =
+    "https://api.giphy.com/v1/gifs/search?q=" +
+    topic +
+    "&api_key=dc6zaTOxFJmzC&limit=10";
+
+  // Creating an AJAX call for the specific movie button being clicked
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    var result = response.data;
+
+    for (i = 0; i < result.length; i++) {
+      var newDiv = $(
+        "<div class='col-3'><p class='hack'>Rating: " +
+          result[i].rating +
+          "</p><img src='" +
+          result[i].images.fixed_height.url +
+          "' data-animate='" +
+          result[i].images.fixed_height.url +
+          "' data-still='" +
+          result[i].images.fixed_height_still.url +
+          "' data-state='animate'</img></div>"
+      );
+      $(".gifHolder").prepend(newDiv);
+    }
+  });
+}
 
 function showBtn() {
-  $(".topicBtns").empty();
+  $(".btnHolder").empty();
+  $("#userInput").val(null);
+
   for (i = 0; i < buttons.length; i++) {
     var gifBtn = $(
       "<button class='btn btn-warning hackBtn gifBtn'>" +
@@ -13,47 +42,16 @@ function showBtn() {
         "</button>"
     );
     gifBtn.attr("data-name", buttons[i]);
-    $(".topicBtn").append(gifBtn);
+    $(".btnHolder").append(gifBtn);
   }
 }
-/*$(".submitBtn").click(function() {
+$(".submitBtn").click(function(event) {
+  event.preventDefault();
   var submission = $("#userInput").val();
 
   buttons.push(submission);
   showBtn();
-}); */
-
-showBtn();
-
-$("button").click(function() {
-  // Grabbing and storing the data-name property value from the button
-  var topic = $(this).attr("data-name");
-
-  // Constructing a queryURL using the gif topic
-  var queryURL =
-    "https://api.giphy.com/v1/gifs/search?q=" +
-    topic +
-    "&api_key=dc6zaTOxFJmzC&limit=10";
-
-  // Performing an AJAX request with the queryURL
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function(response) {
-    console.log(response);
-
-    var result = response.data;
-
-    for (i = 0; i < result.length; i++) {
-      //var newDiv = $("<div>");
-      // var stuff = $("<p>").text("Rating: " + result[i].rating);
-      var image = $("<img>");
-      image.attr("src", result[i].images.fixed_height.url);
-
-      // newDiv.append(stuff);
-      // newDiv.append(image);
-
-      $(".gifHolder").prepend(image);
-    }
-  });
 });
+
+$(document).on("click", ".gifBtn", displayGifs);
+showBtn();
