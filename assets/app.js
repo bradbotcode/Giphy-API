@@ -17,7 +17,7 @@ function displayGifs() {
     var result = response.data;
 
     //for loop to create new div, the gif rating, & the gif url
-    //loop also creates a data attribute for still version and animated version and a data attribute set to "still"
+    //loop also creates a data attribute for both still and animated version of gif along with a data attribute set to "animate"
     for (i = 0; i < result.length; i++) {
       var newDiv = $(
         "<div class='col-3'><p class='hack'>Rating: " +
