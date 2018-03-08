@@ -1,5 +1,7 @@
+//array of original gif keywords
 var buttons = ["coffee", "baby sinclair", "yoda", "bitcoin", "rubiks cube"];
 
+//function to display display gifs
 function displayGifs() {
   var topic = $(this).attr("data-name");
   var queryURL =
@@ -7,7 +9,7 @@ function displayGifs() {
     topic +
     "&api_key=dc6zaTOxFJmzC&limit=10";
 
-  // Creating an AJAX call for the specific movie button being clicked
+  //creating an AJAX call for the specific keyword button being clicked
   $.ajax({
     url: queryURL,
     method: "GET"
@@ -28,6 +30,7 @@ function displayGifs() {
       );
       $(".gifHolder").prepend(newDiv);
     }
+    //click function on gif with an if/else statement to pause or animate the gif
     $(".gif").click(function() {
       var state = $(this).attr("data-state");
       if (state === "animate") {
@@ -41,6 +44,7 @@ function displayGifs() {
   });
 }
 
+//function to render buttons
 function showBtn() {
   $(".btnHolder").empty();
   $("#userInput").val(null);
@@ -55,6 +59,8 @@ function showBtn() {
     $(".btnHolder").append(gifBtn);
   }
 }
+
+//click function to generate new button based on user input
 $(".submitBtn").click(function(event) {
   event.preventDefault();
   var submission = $("#userInput").val();
@@ -63,5 +69,8 @@ $(".submitBtn").click(function(event) {
   showBtn();
 });
 
+//click event to all elements with class of gifBtn
 $(document).on("click", ".gifBtn", displayGifs);
+
+//function call to display original buttons
 showBtn();
