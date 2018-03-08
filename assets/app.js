@@ -18,16 +18,26 @@ function displayGifs() {
       var newDiv = $(
         "<div class='col-3'><p class='hack'>Rating: " +
           result[i].rating +
-          "</p><img src='" +
+          "</p><img class='gif' src='" +
           result[i].images.fixed_height.url +
           "' data-animate='" +
           result[i].images.fixed_height.url +
           "' data-still='" +
           result[i].images.fixed_height_still.url +
-          "' data-state='animate'</img></div>"
+          "' data-state='animate'</div>"
       );
       $(".gifHolder").prepend(newDiv);
     }
+    $(".gif").click(function() {
+      var state = $(this).attr("data-state");
+      if (state === "animate") {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      } else {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      }
+    });
   });
 }
 
