@@ -23,12 +23,12 @@ function displayGifs() {
         "<div class='col-3'><p class='hack'>Rating: " +
           result[i].rating +
           "</p><img class='gif' src='" +
-          result[i].images.fixed_height.url +
+          result[i].images.fixed_height_still.url +
           "' data-animate='" +
           result[i].images.fixed_height.url +
           "' data-still='" +
           result[i].images.fixed_height_still.url +
-          "' data-state='animate'</div>"
+          "' data-state='still'</div>"
       );
       $(".gifHolder").prepend(newDiv);
     }
