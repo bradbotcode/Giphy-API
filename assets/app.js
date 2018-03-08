@@ -16,6 +16,8 @@ function displayGifs() {
   }).then(function(response) {
     var result = response.data;
 
+    //for loop to create new div, the gif rating, & the gif url
+    //loop also creates a data attribute for still version and animated version and a data attribute set to "still"
     for (i = 0; i < result.length; i++) {
       var newDiv = $(
         "<div class='col-3'><p class='hack'>Rating: " +
@@ -30,6 +32,7 @@ function displayGifs() {
       );
       $(".gifHolder").prepend(newDiv);
     }
+
     //click function on gif with an if/else statement to pause or animate the gif
     $(".gif").click(function() {
       var state = $(this).attr("data-state");
