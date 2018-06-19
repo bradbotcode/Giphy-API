@@ -20,15 +20,13 @@ function displayGifs() {
     //loop also creates a data attribute for both still and animated version of gif along with a data attribute for current state
     for (i = 0; i < result.length; i++) {
       var newDiv = $(
-        "<div class='col-3'><p class='hack'>Rating: " +
-          result[i].rating +
-          "</p><img class='gif' src='" +
+        "<div class='col-3'><img class='gif' src='" +
           result[i].images.fixed_height_still.url +
           "' data-animate='" +
           result[i].images.fixed_height.url +
           "' data-still='" +
           result[i].images.fixed_height_still.url +
-          "' data-state='still'</div>"
+          "' data-state='animate'</div>"
       );
       $(".gifHolder").prepend(newDiv);
     }
